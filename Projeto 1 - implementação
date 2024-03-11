@@ -1,0 +1,31 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity LED_Matrix is
+    Port ( a, b, c, d : in STD_LOGIC;
+           f : out STD_LOGIC_VECTOR(14 downto 0));
+end LED_Matrix;
+
+architecture Behavioral of LED_Matrix is
+begin
+    process (a, b, c, d)
+    begin
+        -- Expressões para controlar
+  	f(14)  <= (not d) or (c) or (b) or (a);
+        f(13)  <= (not b) or (d) or (c);
+        f(12)  <= (not d) or (c) or (b) or (a);
+        f(11)  <= (not c);
+        f(10)  <= (not a and not b and not c and d);
+        f(9)  <= (not d) or (c) or (a);
+        f(8)  <= (not d) or (not b and c) or (b and not c) or (a);
+        f(7)  <= (d) or (c) or (b) or (a);
+        f(6)  <= (not d) or (not b and c) or (b and not c) or (a);
+        f(5)  <= (not b and not d) or (b and c);
+        f(4) <= (not a and not b and not c and d);
+        f(3) <= (not c and not d) or (not b and c and d) or (b and not c) or (b and not d) or (a);
+        f(2) <= (not b and not d) or (c) or (b and d) or (a);
+        f(1) <= (not b) or (not c and d) or (c and not d);
+        f(0) <= (not d) or (not b and c) or (b and not c) or (a)
+ 
+    end process;
+end Behavioral;
